@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Backgroud from './assets/Background_Image.jpg';
+import Backgroud from './assets/background2.jpg';
 
 export const Container = styled.div`
   background: url('${Backgroud}');
@@ -13,12 +13,6 @@ export const ContainerHead = styled.div`
   color: #fff;
   padding: 5px;
   font-size: 25px;
-`;
-
-export const ImageLogo = styled.img`
-  width: 250px;
-  border-radius: 50px;
-
 `;
 
 export const Menu = styled.nav`
@@ -72,34 +66,60 @@ cursor: pointer;
 
 `;
 export const ContainerHome = styled.div`
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+`;
+
+export const ContLogo = styled.div`
+
+img{
+  width: 600px;
+    margin-top: -87px;
+    margin-left: 180px;
+
+}
+`;
+
+export const Carousel = styled.div`
+
+margin-top: -270px;
+max-width: 900px;
+cursor: grab;
+overflow: hidden;
+
+.carousel{
+
+width: 100%;
+min-height: 100vh;
+display: flex;
+align-items: center;
+}
+.inner{
   display: flex;
-  align-items: center;
-  padding: 15px;
-  margin-top: 60px;
-`;
-
-export const Content = styled.div`
-  img {
-    margin-bottom: 80px;
-    margin-left: 300px;
-    width: 290px;
-    border-radius: 102px;
-  }
-`;
-
-export const Image = styled.img`
-  margin-top: 70px;
+}
+.imgCarousel{
+  min-height: 200px;
+  min-width: 300px;
+  padding: 4px;
+}
+.imgCarousel img{
   width: 300px;
-  border-radius: 25px;
-  border: 5px solid black;
-  transition: transform 0.5s ease-out;
-  transform: ${props => (props.isHovered ? 'scale(1.1)' : 'scale(1)')};
+ height: 90%;
+ border-radius: 20px;
+ pointer-events: none;
+}
 `;
 
-export const Paragraph = styled.p`
+export const ContText = styled.div`
+
+  p{
   text-align: center;
   color: white;
   font-size: 20px;
+  margin-top: -152px;
+  }
 `;
 export const ContainerService = styled.div`
   margin-top: 50px;
@@ -113,7 +133,7 @@ export const ContainerService = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;}
   `;
- export  const ContainerVideo= styled.video`
+export const ContainerVideo = styled.video`
   width: 300px;
   height: 300px;
   border: 2px solid #ccc;

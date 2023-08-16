@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion'
 
 import Logo from './assets/logopng.png'
-import ImgHome from './assets/Civic.jpeg'
-import ImgPorche from './assets/Porche.jpeg'
 import LogService from './assets/polindo.jpeg'
 import PoliFarol from './assets/PolimentoFarol.jpeg'
 import HigiInt from './assets/ImgInterna.jpeg'
 import PolTec from './assets/ferrariJogCaro.jpeg'
-
+import Img1 from './assets/AudisLogo.jpeg'
+import Img2 from './assets/Civic.jpeg'
+import Img3 from './assets/Porche.jpeg'
+import Img4 from './assets/ferrariJogCaro.jpeg'
+import Img5 from './assets/imagcelularporche.jpeg'
+import Img6 from './assets/ImgInterna.jpeg'
 
 import myVideo from './assets/teste.mp4';
 
@@ -17,16 +21,15 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {
   Container,
   ContainerHead,
-  ImageLogo,
+  ContLogo,
   Menu,
   Submenu,
   SubmenuItem,
   SubmenuLink,
   ContainerSocialNetworks,
   ContainerHome,
-  Image,
-  Content,
-  Paragraph,
+  Carousel,
+  ContText,
   ContainerService,
   ContainerVideo,
   SmallImage
@@ -36,8 +39,6 @@ import {
 
 const Home = () => {
 
-  const [isHoveredAudi, setIsHoveredAudi] = useState(false);
-  const [isHoveredPorche, setIsHoveredPorche] = useState(false);
   const [isSubMenuVisible, setIsSubMenuVisible] = useState(false);
 
   const [hoveredLink, setHoveredLink] = useState(null);
@@ -64,24 +65,37 @@ const Home = () => {
     window.open(url, "_blank");
   };
 
-  const phoneNumber = "554788085196"; // Substitua pelo número de telefone correto
+  const phoneNumber = "554788085196";
 
   const handleWhatsAppClick = () => {
     window.open(`https://wa.me/${phoneNumber}`, "_blank");
   };
 
+const carousel = useRef();
+const [ width, setWidth] = useState(0)
+
+
+useEffect (() => {
+console.log(carousel.current?.scrollWidth, carousel.current?.offsetWidth);
+setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
+},[])
+
+  const carouselItems = [Img1, Img2, Img3, Img4, Img5, Img6];
+
+
+
   return (
     <Container>
       <ContainerHead>
         <Menu>
-          <ImageLogo src={Logo} alt="Logo" />
+
           <ul>
             <li
               onMouseEnter={handleMenuMouseEnter}
               onMouseLeave={handleMenuMouseLeave}
               style={{
-                backgroundColor: isSubMenuVisible ? 'gray' : (hoveredLink === 'servicos' ? 'gray' : 'transparent'),
-                transition: 'background-color 0.3s ease-out',
+                boxShadow: isSubMenuVisible ? '0px 10px 15px rgba(133, 98, 61)' : (hoveredLink === 'servicos' ? '0px 5px 10px rgba(0, 0, 0, 0.3)' : 'none'),
+                transition: 'box-shadow 0.3s ease-out',
                 borderRadius: '50px'
               }}>
               <a href="#service">Serviços</a>
@@ -92,8 +106,8 @@ const Home = () => {
                     <li onMouseEnter={() => handleLinkMouseEnter('servico1')}
                       onMouseLeave={handleLinkMouseLeave}
                       style={{
-                        backgroundColor: hoveredLink === 'servico1' ? 'gray' : 'transparent',
-                        transition: 'background-color 0.3s ease-out',
+                        boxShadow: hoveredLink === 'servico1' ? '0px 10px 15px rgba(133, 98, 61)' : (hoveredLink === 'servicos' ? '0px 5px 10px rgba(0, 0, 0, 0.3)' : 'none'),
+                        transition: 'box-shadow 0.3s ease-out',
                         borderRadius: '50px'
                       }}>
                       <SubmenuLink
@@ -104,8 +118,8 @@ const Home = () => {
                     <li onMouseEnter={() => handleLinkMouseEnter('servico2')}
                       onMouseLeave={handleLinkMouseLeave}
                       style={{
-                        backgroundColor: hoveredLink === 'servico2' ? 'gray' : 'transparent',
-                        transition: 'background-color 0.3s ease-out',
+                        boxShadow: hoveredLink === 'servico2' ? '0px 10px 15px rgba(133, 98, 61)' : (hoveredLink === 'servicos' ? '0px 5px 10px rgba(0, 0, 0, 0.3)' : 'none'),
+                        transition: 'box-shadow 0.3s ease-out',
                         borderRadius: '50px'
                       }}>
                       <SubmenuLink
@@ -116,8 +130,8 @@ const Home = () => {
                     <li onMouseEnter={() => handleLinkMouseEnter('servico3')}
                       onMouseLeave={handleLinkMouseLeave}
                       style={{
-                        backgroundColor: hoveredLink === 'servico3' ? 'gray' : 'transparent',
-                        transition: 'background-color 0.3s ease-out',
+                        boxShadow: hoveredLink === 'servico3' ? '0px 10px 15px rgba(133, 98, 61)' : (hoveredLink === 'servicos' ? '0px 5px 10px rgba(0, 0, 0, 0.3)' : 'none'),
+                        transition: 'box-shadow 0.3s ease-out',
                         borderRadius: '50px'
                       }}>
                       <SubmenuLink
@@ -131,17 +145,16 @@ const Home = () => {
               onMouseEnter={() => handleLinkMouseEnter('assessoria')}
               onMouseLeave={handleLinkMouseLeave}
               style={{
-                backgroundColor: hoveredLink === 'assessoria' ? 'gray' : 'transparent',
-                transition: 'background-color 0.3s ease-out',
-                borderRadius: '50px'
+                boxShadow: hoveredLink === 'assessoria' ? '0px 10px 15px rgba(133, 98, 61)' : (hoveredLink === 'servicos' ? '0px 5px 10px rgba(0, 0, 0, 0.3)' : 'none'),
+                transition: 'box-shadow 0.3s ease-out',
               }} href="/assessoria">Assessoria
             </li>
             <li
               onMouseEnter={() => handleLinkMouseEnter('contato')}
               onMouseLeave={handleLinkMouseLeave}
               style={{
-                backgroundColor: hoveredLink === 'contato' ? 'gray' : 'transparent',
-                transition: 'background-color 0.3s ease-out',
+                boxShadow: hoveredLink === 'contato' ? '0px 10px 15px rgba(133, 98, 61)' : (hoveredLink === 'servicos' ? '0px 5px 10px rgba(0, 0, 0, 0.3)' : 'none'),
+                transition: 'box-shadow 0.3s ease-out',
                 borderRadius: '50px'
               }} href="/contato">Contato
             </li>
@@ -149,8 +162,8 @@ const Home = () => {
               onMouseEnter={() => handleLinkMouseEnter('login')}
               onMouseLeave={handleLinkMouseLeave}
               style={{
-                backgroundColor: hoveredLink === 'login' ? 'gray' : 'transparent',
-                transition: 'background-color 0.3s ease-out',
+                boxShadow: hoveredLink === 'login' ? '0px 10px 15px rgba(133, 98, 61)' : (hoveredLink === 'servicos' ? '0px 5px 10px rgba(0, 0, 0, 0.3)' : 'none'),
+                transition: 'box-shadow 0.3s ease-out',
                 borderRadius: '50px'
 
               }} href="/login">Login
@@ -164,40 +177,47 @@ const Home = () => {
         </Menu>
       </ContainerHead>
       <ContainerHome>
-        <Image src={ImgHome} alt="Image_Audi"
-          onMouseEnter={() => setIsHoveredAudi(true)}
-          onMouseLeave={() => setIsHoveredAudi(false)}
-          isHovered={isHoveredAudi}
-        />
-        <Content>
+        <ContLogo>
           <img src={Logo} alt="Image_Logo" />
-          <Paragraph>
+        </ContLogo>
+        <Carousel>
+          <motion.div ref={carousel} className='carousel' whileTap={{ cursor: 'grabbing' }}>
+            <motion.div className='inner'
+              drag='x'
+              dragConstraints = {{right: 0, left:-width}}
+            >
+              {carouselItems.map(image => (
+                <motion.div className='imgCarousel' key={image} >
+                  <img src={image} alt='Imagem de Servicos' />
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </Carousel>
+        <ContText>
+          <p>
             Seja bem vindo! Não faço milagres, mais faço seu carro brilhar ✨<br>
             </br>
             Aqui na Jotta88 realizamos serviços estéticos automotivos de alto padrão.
             Desde uma lavação Simples até a melhor proteção para seu veículo.
             Somos especializados em detalhamento automotivo e também ministramos cursos.
-          </Paragraph>
-        </Content>
-        <Image src={ImgPorche} alt="Image_Porche"
-          onMouseEnter={() => setIsHoveredPorche(true)}
-          onMouseLeave={() => setIsHoveredPorche(false)}
-          isHovered={isHoveredPorche}
-        />
+          </p>
+        </ContText>
+
       </ContainerHome>
       <ContainerService id="service" >
 
         <h1>Alguns de nossos Serviços</h1>
-<div>
-        <SmallImage src={PoliFarol} alt="Polimento_Farol" />
-        <SmallImage src={LogService} alt="Image_Service" />
-        <ContainerVideo controls>
-          <source src={myVideo} type="video/mp4" />
-          Desculpe, o seu navegador não suporta a reprodução de vídeos.
-        </ContainerVideo>
-        <SmallImage src={PolTec} alt="Polimento_Tecnico" />
-        <SmallImage src={HigiInt} alt="Higienização_Interna" />
-        
+        <div>
+          <SmallImage src={PoliFarol} alt="Polimento_Farol" />
+          <SmallImage src={LogService} alt="Image_Service" />
+          <ContainerVideo controls>
+            <source src={myVideo} type="video/mp4" />
+            Desculpe, o seu navegador não suporta a reprodução de vídeos.
+          </ContainerVideo>
+          <SmallImage src={PolTec} alt="Polimento_Tecnico" />
+          <SmallImage src={HigiInt} alt="Higienização_Interna" />
+
         </div>
       </ContainerService>
     </Container>
